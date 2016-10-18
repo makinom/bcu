@@ -1,50 +1,76 @@
 /**
  * Created by makinomasashi on 16/10/15.
  */
-var Readline    = require('readline');
-var BigInteger = require('bigi');
-var ecurve = require('ecurve');
-let Pubkey = require('fullnode/lib/pubkey');
-let Keypair = require('fullnode/lib/keypair');
-let Address = require('fullnode/lib/address');
-let Hash = require('fullnode/lib/hash');
-let ECDSA = require('fullnode/lib/ecdsa');
+let Readline = require('readline')
+let Bn       = require('yours-bitcoin/lib/bn')
+let Ecdsa    = require('yours-bitcoin/lib/ecdsa')
+let KeyPair  = require('yours-bitcoin/lib/key-pair')
+let Point    = require('yours-bitcoin/lib/point')
+let PrivKey  = require('yours-bitcoin/lib/priv-key')
+let Sig      = require('yours-bitcoin/lib/sig')
 
-var input_data = Readline.createInterface({
+let rl = Readline.createInterface({
   'input': process.stdin,
   'output': {}
 });
 
-var i = 0;
-line1 = '';
-line2 = '';
-input_data.on('line', function (line) {
-  line = line.trim();
-  i++;
-
-  if (i == 1) {
-    line1 = line;
-  }
-  if (i == 2) {
-    line2 = line;
-
-    var privkey = new Buffer(line1, 'hex');
-    var ecparams = ecurve.getCurveByName('secp256k1');
-    var curvePt = ecparams.G.multiply(BigInteger.fromBuffer(privkey));
-    //var x = curvePt.affineX.toBuffer(32);
-    //var y = curvePt.affineY.toBuffer(32);
-
-    var pubkey = Pubkey().fromPrivkey(privkey);
-    //var pubkey = curvePt.getEncoded(true);
-    var keypair = Keypair(privkey, pubkey);
-    //var address = Address().fromPubkey(pubkey);
-    process.stdout.write(privkey.toString('hex') + '\n');
-    process.stdout.write(pubkey.toString('hex') + '\n');
-
-    var databuf = new Buffer(line2);
-    var hashbuf = Hash.sha256(databuf);
-    var sig = ECDSA.sign(hashbuf, keypair)
-    process.stdout.write(sig.toString('hex') + '\n');
+let index = 0
+let dataArray = []
+rl.on('line', function (line) {
+  if( index != 0 && dataArray.length % 3 == 0 ) {
+    index++;
   }
 
+  let input = line.trim();
+
+  if( dataArray[index] == undefined ) {
+    dataArray[index] = []
+  }
+  dataArray[index].push(input)
 });
+
+rl.on('close', function() {
+  let isFirst = true
+  dataArray.forEach(function(data, index, array){
+    if( !isFirst ) {
+      process.stdout.write('\n');
+    } else {
+      isFirst = false
+    }
+
+    // 秘密鍵の作成
+    let privateKey = PrivKey.fromObject({bn: Bn.fromBuffer(Buffer(data[0], 'hex')), compressed: true })
+
+    // kの値をBig Numberに変換
+    let k = Bn.fromBuffer(Buffer(data[1], 'hex'))
+
+    // KeyPairの作成
+    let keypair = KeyPair.fromPrivKey(privateKey)
+
+    // messageの値をBufferに変換
+    let message = Buffer(data[2], 'hex')
+
+    signNoBIP62 = createNoBIP62Sign(k, message, keypair)
+
+    // rとsの値を出力
+    process.stdout.write(signNoBIP62.r.toBuffer().toString('hex'));
+    process.stdout.write('\n')
+    process.stdout.write(signNoBIP62.s.toBuffer().toString('hex'));
+  })
+});
+
+function createNoBIP62Sign( k, hashBuf, keyPair ){
+  let d = keyPair.privKey.bn
+  let N = Point.getN()
+  let G = Point.getG()
+  let e = new Bn().fromBuffer(hashBuf)
+
+  let Q, r, s
+  do {
+    Q = G.mul(k)
+    r = Q.getX().mod(N)
+    s = k.invm(N).mul(e.add(d.mul(r))).mod(N)
+  } while (r.cmp(0) <= 0 || s.cmp(0) <= 0)
+
+  return Sig.fromObject({r: r, s: s, compressed: keyPair.pubKey.compressed})
+}
