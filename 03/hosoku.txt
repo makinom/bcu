@@ -1,0 +1,24 @@
+リトルエンディアン (LE) 逆順にメモリに格納
+ビッグエンディアン (BE) 順にメモリに格納
+
+固定小数点数
+1 サトシ が最小
+
+サトシが111サトシで割り切れない
+Bitcoinでは割り算は使わない
+
+公開鍵
+y が奇数か偶数かを知っていれば、x から計算できる
+...よって更に簡潔に [y is odd][x]
+
+コインベース・トランザクション
+一番最初のトランザクション
+
+ジェネシス・ブロックのプレブハッシュは null
+
+課題4：マークル・ルート
+奇数になったらどうするを考慮しないと解けない
+https://docs.google.com/presentation/d/1kkaxByxvsfslPKMvnhlo-RjbPKIaVAyyMyomaScDnRU/edit#slide=id.g185d8a7310_0_132
+
+課題の環境
+package.json を使って欲しい
