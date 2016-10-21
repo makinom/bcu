@@ -1,0 +1,9 @@
+{
+  "name": "bccc",
+  "version": "0.0.1",
+  "private": true,
+  "dependencies": {
+    "readline": "^1.3.0",
+    "yours-bitcoin": "^0.14.14"
+  }
+}
