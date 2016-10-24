@@ -1,0 +1,55 @@
+### checking ./02_2b_OKW047.js ...
+
+####################################################################################################
+
+checking for /home/mhyuga/Dropbox/Documents/JanomLLC/Projects/BlockchainUniversity/OKwave/homework/02/../../../bcuni-homeworks/chap2/prob2b/1.in.txt ...
+
+### INPUT START
+DXjqxEXcqRyEsbyWmsG2a8
+### INPUT END
+
+--- /tmp/tmp.tudukJX0A4	2016-10-24 11:17:22.937406596 +0900
++++ /home/mhyuga/Dropbox/Documents/JanomLLC/Projects/BlockchainUniversity/OKwave/homework/02/../../../bcuni-homeworks/chap2/prob2b/1.out.txt	2016-10-19 10:30:37.251709434 +0900
+@@ -1,2 +1,2 @@
+ OK
+-example data
+\ ファイル末尾に改行がありません
++example data
+
+Result: NG
+
+####################################################################################################
+
+checking for /home/mhyuga/Dropbox/Documents/JanomLLC/Projects/BlockchainUniversity/OKwave/homework/02/../../../bcuni-homeworks/chap2/prob2b/2.in.txt ...
+
+### INPUT START
+DXjqxEXcqRyEsbyWmsG2a9
+### INPUT END
+
+--- /tmp/tmp.GkOqXOH4gR	2016-10-24 11:17:23.085404610 +0900
++++ /home/mhyuga/Dropbox/Documents/JanomLLC/Projects/BlockchainUniversity/OKwave/homework/02/../../../bcuni-homeworks/chap2/prob2b/2.out.txt	2016-10-19 10:30:37.519705710 +0900
+@@ -1 +1 @@
+-NG
+\ ファイル末尾に改行がありません
++NG
+
+Result: NG
+
+####################################################################################################
+
+checking for /home/mhyuga/Dropbox/Documents/JanomLLC/Projects/BlockchainUniversity/OKwave/homework/02/../../../bcuni-homeworks/chap2/prob2b/3.in.txt ...
+
+### INPUT START
+TjCAQHRhtovDShcfMW3SJ9zAy2AtCr9FzK
+### INPUT END
+
+--- /tmp/tmp.bkLOwDJtze	2016-10-24 11:17:23.225402732 +0900
++++ /home/mhyuga/Dropbox/Documents/JanomLLC/Projects/BlockchainUniversity/OKwave/homework/02/../../../bcuni-homeworks/chap2/prob2b/3.out.txt	2016-10-19 10:30:37.659703765 +0900
+@@ -1,2 +1,2 @@
+ OK
+-Blockchain University
+\ ファイル末尾に改行がありません
++Blockchain University
+
+Result: NG
+

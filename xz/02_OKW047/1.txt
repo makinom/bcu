@@ -1,0 +1,73 @@
+### checking ./02_1_OKW047.js ...
+
+####################################################################################################
+
+checking for /home/mhyuga/Dropbox/Documents/JanomLLC/Projects/BlockchainUniversity/OKwave/homework/02/../../../bcuni-homeworks/chap2/prob1/1.in.txt ...
+
+### INPUT START
+example data to be hashed
+### INPUT END
+
+
+Result: OK
+
+####################################################################################################
+
+checking for /home/mhyuga/Dropbox/Documents/JanomLLC/Projects/BlockchainUniversity/OKwave/homework/02/../../../bcuni-homeworks/chap2/prob1/2.in.txt ...
+
+### INPUT START
+example data to be hashed
+
+### INPUT END
+
+--- /tmp/tmp.aconXMJOGY	2016-10-24 11:17:22.301415128 +0900
++++ /home/mhyuga/Dropbox/Documents/JanomLLC/Projects/BlockchainUniversity/OKwave/homework/02/../../../bcuni-homeworks/chap2/prob1/2.out.txt	2016-10-06 12:31:05.340157314 +0900
+@@ -1,6 +1,6 @@
+-SHA1:c9e38c7dd778cdeffcdff7188c1a4c4d3c767e3b
+-SHA256:aa2356b0d9098e8fc3cdfe63a07a83c85533d06ea6270abf50e5ef7dc60620f9
+-SHA512:760e5df6338ca1a3218fb9f7e5a2e9d20984c3c707f918feb1231c8715636100ff2d484972db370e46b4f8eaaf3294a95191ad6e9f7ebef2d4ffb5c7bef3a13a
+-SHA256D:08dbfcea88a9fc1b9a91ca40de59bb0f30e99285ff4f4019f6b4c9509043b00b
+-RIPEMD160:64988b52845db1905cbf2530a9f60c666c8836f2
+-RIPEMD160SHA256:200fbb165d5d9e31ad72ca7fa31618f5dfd4bfd7
++SHA1:6bc0fa2e7c05045e932b72b78a84a1bf5a14cf1b
++SHA256:497127db7b1f8a706c81e120ce7c2e1c238de03bef8abd60ee3e9b8092610dc6
++SHA512:97a9edc4a0023c2edc18e8e424f85150802467e8d9e97482607784aba39d5c07cccc479a7d5ef786d204d095bd3009d6df4dfb1c3e7c2d4d43f9f79e2242f815
++SHA256D:6956905cc5d2ebb145141687cb8593cfb1cdceb8a9cef8d3d8344d724ae43bf2
++RIPEMD160:334f43dd96305c3edd3cdc2757d4dc7cbeb533af
++RIPEMD160SHA256:c27fcc7b00d6a6d529f39dea4f2a36ef2d9a0e71
+
+Result: NG
+
+####################################################################################################
+
+checking for /home/mhyuga/Dropbox/Documents/JanomLLC/Projects/BlockchainUniversity/OKwave/homework/02/../../../bcuni-homeworks/chap2/prob1/3.in.txt ...
+
+### INPUT START
+example data to be hashed
+Blockchain University
+### INPUT END
+
+--- /tmp/tmp.4C7M8J8C4I	2016-10-24 11:17:22.417413572 +0900
++++ /home/mhyuga/Dropbox/Documents/JanomLLC/Projects/BlockchainUniversity/OKwave/homework/02/../../../bcuni-homeworks/chap2/prob1/3.out.txt	2016-10-06 12:31:05.472155199 +0900
+@@ -1,12 +1,6 @@
+-SHA1:c9e38c7dd778cdeffcdff7188c1a4c4d3c767e3b
+-SHA256:aa2356b0d9098e8fc3cdfe63a07a83c85533d06ea6270abf50e5ef7dc60620f9
+-SHA512:760e5df6338ca1a3218fb9f7e5a2e9d20984c3c707f918feb1231c8715636100ff2d484972db370e46b4f8eaaf3294a95191ad6e9f7ebef2d4ffb5c7bef3a13a
+-SHA256D:08dbfcea88a9fc1b9a91ca40de59bb0f30e99285ff4f4019f6b4c9509043b00b
+-RIPEMD160:64988b52845db1905cbf2530a9f60c666c8836f2
+-RIPEMD160SHA256:200fbb165d5d9e31ad72ca7fa31618f5dfd4bfd7
+-SHA1:6e7d5cbfb1188452a80d13c1dc91094e5c7f637d
+-SHA256:83c8a92bf44add3355852ebbdcf44b2e8977502fbc5c70ee84450e0cc9a41ea1
+-SHA512:6c2fa6cfab88bfba4a7dbbee741fa5ad2ec8bbc98be38b179cee746e9930115dfc2ce9c4aea2bfca6ad78f2a247db3e214b118b7c898aff612ec35f15cc01e5a
+-SHA256D:643cfe6413dde8de94570d2897dbff319d4bac9e58c335575c472324cf8ff6d4
+-RIPEMD160:7c7aa80fd93f9a7cd907eacb40c57210b1ea9628
+-RIPEMD160SHA256:881d545ab5506699f77e6f1ff75394d33f27abae
++SHA1:5b86d72cbb25834427f309f9e6668b737b463f86
++SHA256:4aa2049b71ec6988c0afede13da801903b82fd6366cff72e0a9190187f1408c9
++SHA512:39f575849380c50526341b7e7e840126e02d97f38eb5ce2ccf48cd87bc31d11e87447c551ea1f7d3c4c7ac7a5b8af1dfbf44a9c84d23e7414f1a2188aea71c49
++SHA256D:2989b699d0077b45d26e66fa0208fe9254c359253e08900a9eed1ba407a4df55
++RIPEMD160:c6911b5eb19d33de29433ae5c5cdf86160966570
++RIPEMD160SHA256:53648a2c0130dc4333caa5e5fa9414cd5de2ee2d
+
+Result: NG
+

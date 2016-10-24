@@ -1,0 +1,62 @@
+### checking ./02_4a_OKW047.js ...
+
+####################################################################################################
+
+checking for /home/mhyuga/Dropbox/Documents/JanomLLC/Projects/BlockchainUniversity/OKwave/homework/02/../../../bcuni-homeworks/chap2/prob4a/1.in.txt ...
+
+### INPUT START
+af06e55f021b12ddd4865b77aa53de1ca29f6935cc1956325337153a12d4d6c0
+b156503edf0848e2a2cc8d9fef8c5dc57de53ee61fc261444ca20d3b1e901042
+0109992a6fdf26080a16984ca64de792ae19305933ade928f4fd03174332c10c
+### INPUT END
+
+--- /tmp/tmp.d78l91Utc3	2016-10-24 11:17:24.525385294 +0900
++++ /home/mhyuga/Dropbox/Documents/JanomLLC/Projects/BlockchainUniversity/OKwave/homework/02/../../../bcuni-homeworks/chap2/prob4a/1.out.txt	2016-10-06 20:26:22.783154699 +0900
+@@ -1,2 +1,2 @@
+ b50516541adc71d6e3073d154b35b6170d495aa027841a889d17989a50349fdd
+-f0913e15c7356fe39522209519a59bccff5dd6de131cfe4e04519a5aba75daf6
+\ ファイル末尾に改行がありません
++f0913e15c7356fe39522209519a59bccff5dd6de131cfe4e04519a5aba75daf6
+
+Result: NG
+
+####################################################################################################
+
+checking for /home/mhyuga/Dropbox/Documents/JanomLLC/Projects/BlockchainUniversity/OKwave/homework/02/../../../bcuni-homeworks/chap2/prob4a/2.in.txt ...
+
+### INPUT START
+7476fc3bd79044ba30f2686fe817b0398e9f52ba6b00618e0194113e0e751ed6
+25d9dbbcf5e40b19b17e162864cd5317482f97f5a8e855210b308f8bf5509232
+09126c650c92b4f2cf3009427b624ec3de65ec2d37b6f67e541eaca0ea566ef8
+### INPUT END
+
+--- /tmp/tmp.rVVRHGDqc4	2016-10-24 11:17:25.065378050 +0900
++++ /home/mhyuga/Dropbox/Documents/JanomLLC/Projects/BlockchainUniversity/OKwave/homework/02/../../../bcuni-homeworks/chap2/prob4a/2.out.txt	2016-10-06 20:26:23.079095299 +0900
+@@ -1,2 +1,2 @@
+ b52c871b871196db0fae71c39af9e6d90da503cc92fd6db70c44d873aa4f257d
+-5f0dfce64e56fef9f4e1181ae174a9741c3917606ee40665fc669650d1c03eb6
+\ ファイル末尾に改行がありません
++5f0dfce64e56fef9f4e1181ae174a9741c3917606ee40665fc669650d1c03eb6
+
+Result: NG
+
+####################################################################################################
+
+checking for /home/mhyuga/Dropbox/Documents/JanomLLC/Projects/BlockchainUniversity/OKwave/homework/02/../../../bcuni-homeworks/chap2/prob4a/3.in.txt ...
+
+### INPUT START
+7d7ef7999d8630d7cd94fae0c7e9aa7bb59523d187c2a73bb632f1a30e5a94c4
+e2f64a3957e916eeecbcd1bc0970d317f58c257d08aea12508fe760eb820b73d
+9151516c2603258906ca3f4960d5ab8c11b84c645cb4791e9d863af460bc1902
+### INPUT END
+
+--- /tmp/tmp.dLiXrOZGby	2016-10-24 11:17:25.529371825 +0900
++++ /home/mhyuga/Dropbox/Documents/JanomLLC/Projects/BlockchainUniversity/OKwave/homework/02/../../../bcuni-homeworks/chap2/prob4a/3.out.txt	2016-10-06 20:26:23.347041581 +0900
+@@ -1,2 +1,2 @@
+ 90168b22316f3e20354c124fb4ef6dfa719420de9f190cbbebd6cd63cc6a49a5
+-9e3c9a806745a9782874044edc1c9260d126efec9d934d702df7508066a197d6
+\ ファイル末尾に改行がありません
++9e3c9a806745a9782874044edc1c9260d126efec9d934d702df7508066a197d6
+
+Result: NG
+
