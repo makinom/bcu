@@ -3,12 +3,12 @@
  */
 var Readline    = require('readline')
 
-var input_data = Readline.createInterface({
+var rl = Readline.createInterface({
   'input': process.stdin,
   'output': {}
 });
 
-input_data.on('line', function (line) {
+rl.on('line', function (line) {
   var input = line
   var isMinus = false
 

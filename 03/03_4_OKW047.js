@@ -14,8 +14,7 @@ var rl = Readline.createInterface({
 var index = 0
 var dataArray = []
 rl.on('line', function (line) {
-  // 入力文字列から改行を削除
-  var input = line.replace(/\r?\n/g,"")
+  var input = line
 
   // 配列に追加
   dataArray.push(input)

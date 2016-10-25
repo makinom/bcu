@@ -4,12 +4,12 @@
 var Readline    = require('readline')
 var Tx = require('yours-bitcoin/lib/tx')
 
-var input_data = Readline.createInterface({
+var rl = Readline.createInterface({
   'input': process.stdin,
   'output': {}
 });
 
-input_data.on('line', function (line) {
+rl.on('line', function (line) {
   var tx = Tx.fromHex(line)
   process.stdout.write(tx.id().toString('hex'));
 });

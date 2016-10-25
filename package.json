@@ -14,6 +14,7 @@
   "dependencies": {
     "chai": "^2.2.0",
     "ecurve": "^1.0.3",
-    "fullnode": "0.13.0"
+    "fullnode": "0.13.0",
+    "yours-bitcoin": "^0.14.14"
   }
 }
