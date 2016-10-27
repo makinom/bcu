@@ -46,7 +46,7 @@ rl.on('close', function() {
   }
 
   // リトルエンディアンにしてマークル・ルートを出力
-  process.stdout.write(reverseEndian(r[0].toString('hex')));
+  process.stdout.write(reverseEndian(r[0].toString('hex')) + '\r\n');
 });
 
 /**

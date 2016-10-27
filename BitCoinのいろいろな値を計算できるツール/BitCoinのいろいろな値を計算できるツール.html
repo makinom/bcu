@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<!-- saved from url=(0063)http://8034eb4bc3d897e4.lolipop.jp/jquery/tool/bitcointool.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <style>
+            p{
+               padding:1px;
+               margin:1px;
+            }
+            div.div_menu1{
+                margin:5px;
+                background: rgba(60,120,180,0.5);
+                border:1px solid blue;
+            }
+            h3{
+                padding:0;
+                margin:0
+            }
+            div.footer{
+                height:500px;
+                width:100%;
+            }
+        </style>
+        <script src="./BitCoinのいろいろな値を計算できるツール_files/jquery-1.10.1.js.ダウンロード"></script>
+	<script src="./BitCoinのいろいろな値を計算できるツール_files/ripemd160.js.ダウンロード"></script>
+        <script src="./BitCoinのいろいろな値を計算できるツール_files/sha256.js.ダウンロード"></script>
+        <script src="./BitCoinのいろいろな値を計算できるツール_files/base58.js.ダウンロード"></script>
+        
+        <script>
+            var hex2bin=function(hex){
+                var bytes = [];
+
+                for(var i=0; i< hex.length-1; i+=2){
+                    bytes.push(parseInt(hex.substr(i, 2), 16));
+                }
+                return String.fromCharCode.apply(String, bytes);
+            };
+            var swap=function(val,bytes){
+                if(val.length%2){
+                    val="0"+val;
+                }
+                if(bytes && ((val.length /2) < bytes)){
+                    while((val.length/2)<bytes){
+                        val="00"+val;
+                    }
+                }
+                var s=val.split("").reverse();
+                var x="";
+                for (var i = 0; i < s.length; i+=2) {
+                    x+=s[i+1]+s[i];
+                }
+                return x;
+            } 
+            //2回ハッシュ処理
+            var doublehash=function(data){
+                return swap(SHA256Hash(hex2bin(SHA256Hash(hex2bin(data)))));
+            }
+            
+            var calcTarget=function(bits){
+                var last3byte=(parseInt(bits)<<8)>>8,
+                    left1byte=(parseInt(bits)>>24),
+                    maxtarget=0x00ffff;//本当は1d00ffff
+                //0を計算して、maxtargetの0(52個)と相殺
+                var zero=8*(left1byte-3);
+                last3byte=last3byte.toString(16);
+                for(i=0;i<zero/4;i++){
+                    last3byte+="0";
+                }
+                while(last3byte.length<64){
+                    last3byte="0"+last3byte;
+                }
+                return last3byte;
+            }            
+            
+            var calcDifficulty=function(bits){
+                var last3byte=(parseInt(bits)<<8)>>8,
+                    left1byte=(parseInt(bits)>>24),
+                    maxtarget=0x00ffff;//本当は1d00ffff
+                //0を計算して、maxtargetの0(52個)と相殺
+                var zero=8*(left1byte-3);
+                maxtarget=maxtarget*Math.pow(16,((52-Math.floor(zero/4))));
+                return maxtarget/last3byte;
+            }
+            $(document.body).ready(function(){
+                $("#UnixTimebtn").click(function(){
+                    var tm=Date.parse($("#toUnixTime").val())/1000;
+                    $("#resultUnixTime").html(tm+"(GMT)<br>"+tm+"(Local)");
+                });
+                $("#btntohx").click(function(){
+                    $("#result").text(swap($("#tohx").val()));
+                })
+                $("#btnto16").click(function(){
+                    $("#result16").text(parseInt($("#to16").val()).toString(16));
+                })
+
+                $("#sha256btn").click(function(){
+                    $("#sha256result").text(SHA256Hash(hex2bin($("#sha256").val())));
+                })
+                $("#ripemd160btn").click(function(){
+                    $("#ripemd160result").text(CryptoJS.RIPEMD160($("#ripemd160").val()));
+                })
+                $("#base58btn").click(function(){
+                   if( $("#base58radio:checked").val()==="0"){
+                    $("#base58result").text(base58.encode(parseInt($("#base58").val())));
+                   }else{
+                       $("#base58result").text(base58.decode($("#base58").val()));
+                   }
+                })
+
+                $("#btntohash").click(function(){
+                    var 
+                        version=swap(parseInt($("#version").val()).toString(16),4),
+                        prehash=swap($("#preHash").val()),
+                        merkle=swap($("#merklert").val()),
+                        btime=swap(parseInt($("#time").val()).toString(16),4),
+                        bits=swap(parseInt("0x"+$("#bits").val()).toString(16),4),
+                        nonce=swap(parseInt($("#nonce").val()).toString(16),4);
+                        
+                        $("#rversion").text(version);
+                        $("#rpre").text(prehash);
+                        $("#rmerkle").text(merkle);
+                        $("#rtime").text(btime);
+                        $("#rbits").text(bits);
+                        $("#rnonce").text(nonce);
+                        $("#culchash").text( 
+                                version+prehash+merkle+btime+bits+nonce
+                        );
+                        var pass1=SHA256Hash(hex2bin(version+prehash+merkle+btime+bits+nonce));
+                    $("#resulthash").text(swap(SHA256Hash(hex2bin(pass1))));
+                     
+                })
+                
+                $("#mekelhashbtn").click(function(){
+                    var transactions=[];
+                    //inputフィールドの値を配列に追加
+                    $("div#transactions input").each(function(){
+                        if($(this).val()!==""){
+                            transactions.push($(this).val());
+                        }
+                    });
+
+                    //再帰的に処理
+                    var calchash=function(trans){
+                        var newtrans=[];
+                        //transactionの件数が2件以上で奇数の場合は最後の値を追加して偶数個にする
+                        var len=trans.length;
+                        if(len>1 && len %2){
+                            trans.push(trans[len-1]);
+                        }
+                        
+                        //2つづつHashを連結して、そのHashを取得
+                        for(var i=0;i<len;i+=2){
+                            newtrans.push(doublehash(swap(trans[i])+swap(trans[i+1])));
+                        }
+                        //配列要素が1になるまで再帰処理
+                        return newtrans.length>1?calchash(newtrans):newtrans[0];
+                    }
+                    $("#mekle_hash").text("MerkleHash : "+calchash(transactions));
+                });
+                
+                $("#add").click(function(){
+                    $("#transactions").append("<input size=70><br>");
+                })
+                $("#targetbtn").click(function(){
+                   var val =$("#target_bits").val();
+                   if(!val.match(/^0x/)){
+                     $("#target_bits").val( val="0x"+val);
+                   }
+                   $("#target_result").text( calcTarget(val));
+                })                
+                
+                $("#difficultybtn").click(function(){
+                   var val =$("#difficulty_bits").val();
+                   if(!val.match(/^0x/)){
+                     $("#difficulty_bits").val( val="0x"+val);
+                   }
+                   $("#difficulty_result").text( calcDifficulty(val));
+                })
+
+		$("#ltc_scrypt_btn").click(function(){
+			$.ajax("ltc_scrypt.cgi?hash="+$("#ltc_scrypt_val").val()).then(function(res){
+				$("#ltc_scrypt_result").text(res);
+			});
+		});
+            })
+
+            </script>
+        <title>BitCoinのいろいろな値を計算できるツール</title>
+        
+    </head>
+    <body>
+        <h3>UnixTime変換</h3>
+        <div class="div_menu1">
+            
+        <input id="toUnixTime" size="128" style="border:1px solid gray"><button id="UnixTimebtn">変換</button><br>
+        結果：<div id="resultUnixTime"></div>
+        </div>
+        <hr>
+        <h3>16進数文字列を逆順に並び替える</h3>
+        <div class="div_menu1">
+            
+        <input id="tohx" size="128" style="border:1px solid gray"><button id="btntohx">変換</button><br>
+        結果：<div id="result"></div>
+        </div>
+        <hr>
+        <h3>10進-&gt;16進数に変換</h3>
+        <div class="div_menu1">
+            
+        <input id="to16" size="128" style="border:1px solid gray"><button id="btnto16">変換</button><br>
+        結果：<div id="result16"></div>
+        </div>
+        <hr>
+
+        <h3>SHA256Hash計算</h3>
+        <div class="div_menu1">
+            
+        <input id="sha256" size="128" style="border:1px solid gray"><button id="sha256btn">変換</button><br>
+        結果：<div id="sha256result"></div>
+        </div>
+        <hr>
+        <h3>ripemd160Hash計算</h3>
+        <div class="div_menu1">
+            
+        <input id="ripemd160" size="128" style="border:1px solid gray"><button id="ripemd160btn">変換</button><br>
+        結果：<div id="ripemd160result"></div>
+        </div>
+        <hr>
+        <h3>base58Hash計算</h3>
+        <div class="div_menu1">
+            
+        <input id="base58" size="128" style="border:1px solid gray">
+        encode:<input type="radio" name="b58" id="base58radio" value="0">
+        decode:<input type="radio" name="b58" id="base58radio" value="1"><button id="base58btn">変換</button><br>
+        結果：<div id="base58result"></div>
+        </div>
+        <hr>
+
+        <h3>BitCoinHash計算</h3>
+        <div class="div_menu1">
+
+            <table style="width:90%">
+                <tbody><tr><td style="width:200px">Block Version：<br><span style="font-size:60%;color:red">1 or 2</span></td><td><input id="version" style="border:1px solid gray"><p id="rversion"></p></td></tr>
+                <tr><td>PreviousBlockHash:</td><td><input id="preHash" size="70" style="border:1px solid gray"><p id="rpre"></p></td></tr>
+                <tr><td>MerkleRoot:</td><td><input id="merklert" size="70" style="border:1px solid gray"><p id="rmerkle"></p></td></tr>
+                <tr><td>Block Time:<br><span style="font-size:70%;color:red">10進数で入力</span></td><td><input id="time" style="border:1px solid gray"><p id="rtime"></p></td></tr>
+                <tr><td>Block Bits:<br><span style="font-size:70%;color:red">16進数で入力</span></td><td><input id="bits" style="border:1px solid gray"><p id="rbits"></p></td></tr>
+                <tr><td>Block Nonce:<br><span style="font-size:70%;color:red">10進数で入力</span></td><td><input id="nonce" style="border:1px solid gray"><p id="rnonce"></p></td></tr>
+                <tr><td colspan="2"><button id="btntohash">変換</button></td></tr>
+                <tr><td>連結:</td><td id="culchash" style="word-break:break-all"></td></tr>
+                <tr><td>ブロックHash：</td><td id="resulthash" style="font-size:150%;font-style:bold;color:blue"></td></tr>
+            </tbody></table>
+        </div>
+        <hr>
+        <h3>MerkleRoot計算</h3>
+        <div class="div_menu1">
+            <div id="transactions">
+                TransactionHash：<br><input size="70"><br><input size="70"><br>
+            </div>
+            <div id="mekle_hash" style="font-size:130%;color:red;font-weight:bold"></div>
+            <button id="add">フィールド追加</button>
+            <button id="mekelhashbtn">変換</button>
+            
+        </div>
+        <h3>Target計算</h3>
+        <div class="div_menu1">
+        Bits：<input id="target_bits" size="70">
+            <div id="target_result" style="font-size:130%;color:red;font-weight:bold"></div>
+            <button id="targetbtn">計算</button>
+            
+        </div>      
+        <h3>Difficulty計算</h3>
+        <div class="div_menu1">
+        Bits：<input id="difficulty_bits" size="70">
+            <div id="difficulty_result" style="font-size:130%;color:red;font-weight:bold"></div>
+            <button id="difficultybtn">計算</button>
+            
+        </div>
+        <h3>LiteCoin系のTargetと比較する値を計算</h3>
+        <div class="div_menu1">
+        Param：<input id="ltc_scrypt_val" size="70">
+            <div id="ltc_scrypt_result" style="font-size:130%;color:red;font-weight:bold"></div>
+            <button id="ltc_scrypt_btn">計算</button>
+            
+        </div>
+        <div class="footer"></div>
+    
+
+</body></html>

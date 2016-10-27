@@ -11,5 +11,5 @@ var rl = Readline.createInterface({
 
 rl.on('line', function (line) {
   var tx = Tx.fromHex(line)
-  process.stdout.write(tx.id().toString('hex'));
+  process.stdout.write(tx.id().toString('hex') + '\r\n');
 });

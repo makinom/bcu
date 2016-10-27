@@ -34,15 +34,15 @@ rl.on('line', function (line) {
 
   var buf = new Buffer(2)
   buf.writeUInt16BE(num,0)
-  process.stdout.write(buf.toString("hex", 0, 1) + ' ' + buf.toString("hex", 1, 2) + '\n');
+  process.stdout.write(buf.toString("hex", 0, 1) + ' ' + buf.toString("hex", 1, 2) + '\r\n');
   buf.writeUInt16LE(num,0)
-  process.stdout.write(buf.toString("hex", 0, 1) + ' ' + buf.toString("hex", 1, 2) + '\n');
+  process.stdout.write(buf.toString("hex", 0, 1) + ' ' + buf.toString("hex", 1, 2) + '\r\n');
 
   /**************************/
   var input = line
   buf.writeInt16BE(input,0)
-  process.stdout.write(buf.toString("hex", 0, 1) + ' ' + buf.toString("hex", 1, 2) + '\n');
+  process.stdout.write(buf.toString("hex", 0, 1) + ' ' + buf.toString("hex", 1, 2) + '\r\n');
   buf.writeInt16LE(input,0)
-  process.stdout.write(buf.toString("hex", 0, 1) + ' ' + buf.toString("hex", 1, 2));
+  process.stdout.write(buf.toString("hex", 0, 1) + ' ' + buf.toString("hex", 1, 2) + '\r\n');
 
 });

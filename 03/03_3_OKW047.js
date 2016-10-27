@@ -32,8 +32,9 @@ rl.on('line', function (line) {
 
   // nonceとハッシュを出力
   process.stdout.write(nonce.toString());
-  process.stdout.write('\n');
+  process.stdout.write('\r\n');
   process.stdout.write(reverseEndian(blockHeaderHash));
+  process.stdout.write('\r\n');
 });
 
 /**
