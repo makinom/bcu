@@ -12,9 +12,12 @@
     "node": ">=4.2.0"
   },
   "dependencies": {
+    "bip39": "^2.2.0",
+    "bitcore-mnemonic": "^1.1.1",
     "chai": "^2.2.0",
     "ecurve": "^1.0.3",
     "fullnode": "0.13.0",
+    "node-pbkdf2": "^0.1.1",
     "yours-bitcoin": "^0.14.14"
   }
 }
