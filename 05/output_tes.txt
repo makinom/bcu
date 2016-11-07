@@ -1,0 +1,3 @@
+[ [ 'ozone drill grab fiber curtain grace pudding thank cruise elder eight picnic' ] ]
+[ [ 'ozone drill grab fiber curtain grace pudding thank cruise elder eight picnic',
+    'TREZOR' ] ]
