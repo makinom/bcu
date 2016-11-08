@@ -3,7 +3,8 @@
  */
 var BigInteger = require('bigi');
 var ecurve = require('ecurve');
-var data = require('fs').readFileSync('/dev/stdin').toString().trim();
+//var data = require('fs').readFileSync('/dev/stdin').toString().trim();
+var data = require('fs').readFileSync(process.stdin.fd).toString().trim();
 var ecparams = ecurve.getCurveByName('secp256k1');
 var point = ecparams.G.multiply(BigInteger.fromHex(data));
 console.log(point.getEncoded(false).toString('hex'));

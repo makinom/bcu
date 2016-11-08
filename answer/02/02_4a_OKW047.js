@@ -3,7 +3,8 @@
  */
 var BigInteger = require('bigi');
 var ecurve = require('ecurve');
-var data = require('fs').readFileSync('/dev/stdin').toString().split('\n');
+//var data = require('fs').readFileSync('/dev/stdin').toString().split('\n');
+var data = require('fs').readFileSync(process.stdin.fd).toString().split('\n');
 var priv = BigInteger.fromHex(data.shift());
 var k    = BigInteger.fromHex(data.shift());
 var hash = BigInteger.fromHex(data.shift());
