@@ -1,0 +1,12 @@
+{
+  "name": "bccc",
+  "version": "0.0.1",
+  "private": true,
+  "dependencies": {
+    "bigi": "^1.4.2",
+    "ecurve": "^1.0.3",
+    "readline": "^1.3.0",
+    "ripemd160": "^2.0.1",
+    "yours-bitcoin": "^0.14.14"
+  }
+}
