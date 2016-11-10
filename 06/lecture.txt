@@ -1,2 +1,6 @@
 http://db-event.jpn.org/deim2009/proceedings/files/D4-6.pdf
 http://db-event.jpn.org/deim2011/proceedings/pdf/c5-3.pdf
+http://repository.dl.itc.u-tokyo.ac.jp/dspace/bitstream/2261/59458/1/48136427.pdf
+ブルーム・フィルタの原理とその一般化
+https://bitflyer.jp/glossary/bloomfilter
+http://techmedia-think.hatenablog.com/entry/2016/02/12/221225
